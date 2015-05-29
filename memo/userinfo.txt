@@ -1,0 +1,53 @@
+各コメントビューワーのコテハンの保存についてのメモ
+
+凡例
+コメントビューワー名称
+	ファイル名
+	形式の簡単な説明
+
+--------
+
+Charleston
+	~/Library/Application Support/Charleston/userslist.xml
+	XML形式。
+		<user id="ユーザーID" type="id">
+		      <handle personality="よくわからない数値">コテハンorニックネーム</handle>
+		</user>
+
+		<user id="ユーザーID" type="id" comment="sign" speech="no">
+		の形式の場合もある。
+		184の人は type="184"	になる。
+		<handle personality="よくわからない数値" lock="no">コテハンorニックネーム</handle>
+		の場合もある。
+
+Okayu
+	~/Library/Application Support/Okayu/okayu.sqlite3
+	sqlite 形式。テーブルは下記の通り。
+	CREATE TABLE users (id integer primary key autoincrement, member_id integer, code text, name text, color blob, updated_at double, image_id text, about text);
+	このうち、code がユーザーID、name がコテハンorニックネーム
+
+Viqo
+	~/Library/Application Support/Viqo/user.sqlite
+	sqlite 形式。テーブルは下記の通り。
+	CREATE TABLE user (id integer unique primary key, name varchar(60));
+	id がユーザーID、name がコテハンorニックネーム
+
+Edamame
+	/Applications/Edamame/Preferences/NicoLive/Users/userid.plist
+	plist形式。
+	<key>name</key>直下の<dict>内
+		<key>ユーザーID</key>
+		<strings>ニックネーム</strings>
+	<key>user</key>直下の<dict>内
+		<key>ユーザーID</key>
+		<strings>コテハン</strings>
+
+nicolivehelper
+	~/Library/Application Support/Firefox/英数字の羅列.default/nicolivehelper/nico_namemap
+	JSON形式。
+	"ユーザーID": {
+	      "date": 日付のunix time（たぶん）
+	      "name": コテハンorニックネーム
+	}
+
+Hakumai
